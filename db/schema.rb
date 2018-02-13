@@ -13,42 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20151031095005) do
 
-  create_table "addresses", force: :cascade do |t|
-    t.string   "street1",          limit: 255
-    t.string   "street2",          limit: 255
-    t.string   "city",             limit: 255
-    t.string   "region",           limit: 255
-    t.string   "postcode",         limit: 255
-    t.string   "country_code",     limit: 2
-    t.text     "full_address",     limit: 65535
-    t.string   "address_type",     limit: 16
-    t.integer  "addressable_id",   limit: 4
-    t.string   "addressable_type", limit: 255
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-  end
-
-  add_index "addresses", ["address_type"], name: "index_addresses_on_address_type", using: :btree
-  add_index "addresses", ["addressable_id", "addressable_type"], name: "index_addresses_on_addressable_id_and_addressable_type", using: :btree
-
-  create_table "agile_colors", force: :cascade do |t|
-    t.integer "container_id",   limit: 4
-    t.string  "container_type", limit: 255
-    t.string  "color",          limit: 255
-  end
-
-  add_index "agile_colors", ["container_id"], name: "index_agile_colors_on_container_id", using: :btree
-  add_index "agile_colors", ["container_type"], name: "index_agile_colors_on_container_type", using: :btree
-
-  create_table "agile_data", force: :cascade do |t|
-    t.integer "issue_id",     limit: 4
-    t.integer "position",     limit: 4
-    t.integer "story_points", limit: 4
-  end
-
-  add_index "agile_data", ["issue_id"], name: "index_agile_data_on_issue_id", using: :btree
-  add_index "agile_data", ["position"], name: "index_agile_data_on_position", using: :btree
-
   create_table "attachments", force: :cascade do |t|
     t.integer  "container_id",   limit: 4
     t.string   "container_type", limit: 30
@@ -146,33 +110,6 @@ ActiveRecord::Schema.define(version: 20151031095005) do
 
   add_index "changesets_issues", ["changeset_id", "issue_id"], name: "changesets_issues_ids", unique: true, using: :btree
 
-  create_table "checklist_template_categories", force: :cascade do |t|
-    t.string  "name",     limit: 255
-    t.integer "position", limit: 4,   default: 1
-  end
-
-  create_table "checklist_templates", force: :cascade do |t|
-    t.string  "name",           limit: 255
-    t.integer "project_id",     limit: 4
-    t.integer "category_id",    limit: 4
-    t.integer "user_id",        limit: 4
-    t.boolean "is_public"
-    t.text    "template_items", limit: 65535
-    t.boolean "is_default",                   default: false
-    t.integer "tracker_id",     limit: 4
-  end
-
-  add_index "checklist_templates", ["tracker_id"], name: "index_checklist_templates_on_tracker_id", using: :btree
-
-  create_table "checklists", force: :cascade do |t|
-    t.boolean  "is_done",                default: false
-    t.string   "subject",    limit: 512
-    t.integer  "position",   limit: 4,   default: 1
-    t.integer  "issue_id",   limit: 4,                   null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "comments", force: :cascade do |t|
     t.string   "commented_type", limit: 30,    default: "", null: false
     t.integer  "commented_id",   limit: 4,     default: 0,  null: false
@@ -184,83 +121,6 @@ ActiveRecord::Schema.define(version: 20151031095005) do
 
   add_index "comments", ["author_id"], name: "index_comments_on_author_id", using: :btree
   add_index "comments", ["commented_id", "commented_type"], name: "index_comments_on_commented_id_and_commented_type", using: :btree
-
-  create_table "contacts", force: :cascade do |t|
-    t.string   "first_name",      limit: 255
-    t.string   "last_name",       limit: 255
-    t.string   "middle_name",     limit: 255
-    t.string   "company",         limit: 255
-    t.string   "phone",           limit: 255
-    t.string   "email",           limit: 255
-    t.string   "website",         limit: 255
-    t.string   "skype_name",      limit: 255
-    t.date     "birthday"
-    t.string   "avatar",          limit: 255
-    t.text     "background",      limit: 65535
-    t.string   "job_title",       limit: 255
-    t.boolean  "is_company",                    default: false
-    t.integer  "author_id",       limit: 4,     default: 0,     null: false
-    t.integer  "assigned_to_id",  limit: 4
-    t.datetime "created_on"
-    t.datetime "updated_on"
-    t.string   "cached_tag_list", limit: 255
-    t.integer  "visibility",      limit: 4,     default: 0,     null: false
-  end
-
-  add_index "contacts", ["assigned_to_id"], name: "index_contacts_on_assigned_to_id", using: :btree
-  add_index "contacts", ["author_id"], name: "index_contacts_on_author_id", using: :btree
-  add_index "contacts", ["company"], name: "index_contacts_on_company", using: :btree
-  add_index "contacts", ["email"], name: "index_contacts_on_email", using: :btree
-  add_index "contacts", ["first_name"], name: "index_contacts_on_first_name", using: :btree
-  add_index "contacts", ["is_company"], name: "index_contacts_on_is_company", using: :btree
-
-  create_table "contacts_deals", id: false, force: :cascade do |t|
-    t.integer "deal_id",    limit: 4
-    t.integer "contact_id", limit: 4
-  end
-
-  add_index "contacts_deals", ["contact_id"], name: "index_contacts_deals_on_contact_id", using: :btree
-  add_index "contacts_deals", ["deal_id"], name: "index_contacts_deals_on_deal_id", using: :btree
-
-  create_table "contacts_issues", id: false, force: :cascade do |t|
-    t.integer "issue_id",   limit: 4, default: 0, null: false
-    t.integer "contact_id", limit: 4, default: 0, null: false
-  end
-
-  add_index "contacts_issues", ["contact_id"], name: "index_contacts_issues_on_contact_id", using: :btree
-  add_index "contacts_issues", ["issue_id"], name: "index_contacts_issues_on_issue_id", using: :btree
-
-  create_table "contacts_projects", id: false, force: :cascade do |t|
-    t.integer "project_id", limit: 4, default: 0, null: false
-    t.integer "contact_id", limit: 4, default: 0, null: false
-  end
-
-  add_index "contacts_projects", ["contact_id"], name: "index_contacts_projects_on_contact_id", using: :btree
-  add_index "contacts_projects", ["project_id"], name: "index_contacts_projects_on_project_id", using: :btree
-
-  create_table "contacts_queries", force: :cascade do |t|
-    t.integer "project_id",    limit: 4
-    t.string  "name",          limit: 255,   default: "",    null: false
-    t.text    "filters",       limit: 65535
-    t.integer "user_id",       limit: 4,     default: 0,     null: false
-    t.boolean "is_public",                   default: false, null: false
-    t.text    "column_names",  limit: 65535
-    t.text    "sort_criteria", limit: 65535
-    t.string  "group_by",      limit: 255
-    t.string  "type",          limit: 255
-  end
-
-  add_index "contacts_queries", ["project_id"], name: "index_contacts_queries_on_project_id", using: :btree
-  add_index "contacts_queries", ["user_id"], name: "index_contacts_queries_on_user_id", using: :btree
-
-  create_table "contacts_settings", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.text     "value",      limit: 65535
-    t.integer  "project_id", limit: 4
-    t.datetime "updated_on"
-  end
-
-  add_index "contacts_settings", ["project_id"], name: "index_contacts_settings_on_project_id", using: :btree
 
   create_table "custom_field_enumerations", force: :cascade do |t|
     t.integer "custom_field_id", limit: 4,                  null: false
@@ -322,72 +182,6 @@ ActiveRecord::Schema.define(version: 20151031095005) do
 
   add_index "custom_values", ["custom_field_id"], name: "index_custom_values_on_custom_field_id", using: :btree
   add_index "custom_values", ["customized_type", "customized_id"], name: "custom_values_customized", using: :btree
-
-  create_table "deal_categories", force: :cascade do |t|
-    t.string  "name",       limit: 255, null: false
-    t.integer "project_id", limit: 4
-  end
-
-  add_index "deal_categories", ["project_id"], name: "index_deal_categories_on_project_id", using: :btree
-
-  create_table "deal_processes", force: :cascade do |t|
-    t.integer  "deal_id",    limit: 4, null: false
-    t.integer  "author_id",  limit: 4, null: false
-    t.integer  "old_value",  limit: 4
-    t.integer  "value",      limit: 4, null: false
-    t.datetime "created_at"
-  end
-
-  add_index "deal_processes", ["author_id"], name: "index_deal_processes_on_author_id", using: :btree
-  add_index "deal_processes", ["deal_id"], name: "index_deal_processes_on_deal_id", using: :btree
-
-  create_table "deal_statuses", force: :cascade do |t|
-    t.string  "name",        limit: 255,                    null: false
-    t.integer "position",    limit: 4
-    t.boolean "is_default",              default: false,    null: false
-    t.integer "color",       limit: 4,   default: 11184810, null: false
-    t.integer "status_type", limit: 4,   default: 0,        null: false
-  end
-
-  create_table "deal_statuses_projects", id: false, force: :cascade do |t|
-    t.integer "project_id",     limit: 4, default: 0, null: false
-    t.integer "deal_status_id", limit: 4, default: 0, null: false
-  end
-
-  add_index "deal_statuses_projects", ["project_id", "deal_status_id"], name: "index_deal_statuses_projects_on_project_id_and_deal_status_id", using: :btree
-
-  create_table "deals", force: :cascade do |t|
-    t.string   "name",           limit: 255
-    t.text     "background",     limit: 65535
-    t.string   "currency",       limit: 255
-    t.integer  "duration",       limit: 4,                              default: 1
-    t.decimal  "price",                        precision: 20, scale: 2
-    t.integer  "price_type",     limit: 4
-    t.integer  "project_id",     limit: 4
-    t.integer  "author_id",      limit: 4
-    t.integer  "assigned_to_id", limit: 4
-    t.integer  "status_id",      limit: 4
-    t.integer  "contact_id",     limit: 4
-    t.integer  "category_id",    limit: 4
-    t.datetime "created_on"
-    t.datetime "updated_on"
-    t.datetime "due_date"
-    t.integer  "probability",    limit: 4
-  end
-
-  add_index "deals", ["author_id"], name: "index_deals_on_author_id", using: :btree
-  add_index "deals", ["category_id"], name: "index_deals_on_category_id", using: :btree
-  add_index "deals", ["contact_id"], name: "index_deals_on_contact_id", using: :btree
-  add_index "deals", ["project_id"], name: "index_deals_on_project_id", using: :btree
-  add_index "deals", ["status_id"], name: "index_deals_on_status_id", using: :btree
-
-  create_table "deals_issues", force: :cascade do |t|
-    t.integer "issue_id", limit: 4, default: 0, null: false
-    t.integer "deal_id",  limit: 4, default: 0, null: false
-  end
-
-  add_index "deals_issues", ["deal_id"], name: "index_deals_issues_on_deal_id", using: :btree
-  add_index "deals_issues", ["issue_id"], name: "index_deals_issues_on_issue_id", using: :btree
 
   create_table "documents", force: :cascade do |t|
     t.integer  "project_id",  limit: 4,     default: 0,  null: false
@@ -603,21 +397,6 @@ ActiveRecord::Schema.define(version: 20151031095005) do
   add_index "news", ["created_on"], name: "index_news_on_created_on", using: :btree
   add_index "news", ["project_id"], name: "news_project_id", using: :btree
 
-  create_table "notes", force: :cascade do |t|
-    t.string   "subject",     limit: 255
-    t.text     "content",     limit: 65535
-    t.integer  "source_id",   limit: 4
-    t.string   "source_type", limit: 255
-    t.integer  "author_id",   limit: 4
-    t.datetime "created_on"
-    t.datetime "updated_on"
-    t.integer  "type_id",     limit: 4
-  end
-
-  add_index "notes", ["author_id"], name: "index_notes_on_author_id", using: :btree
-  add_index "notes", ["source_id", "source_type"], name: "index_notes_on_source_id_and_source_type", using: :btree
-  add_index "notes", ["type_id"], name: "index_notes_on_type_id", using: :btree
-
   create_table "open_id_authentication_associations", force: :cascade do |t|
     t.integer "issued",     limit: 4
     t.integer "lifetime",   limit: 4
@@ -683,18 +462,6 @@ ActiveRecord::Schema.define(version: 20151031095005) do
 
   add_index "queries_roles", ["query_id", "role_id"], name: "queries_roles_ids", unique: true, using: :btree
 
-  create_table "recently_vieweds", force: :cascade do |t|
-    t.integer  "viewer_id",   limit: 4
-    t.integer  "viewed_id",   limit: 4
-    t.string   "viewed_type", limit: 255
-    t.integer  "views_count", limit: 4
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-  end
-
-  add_index "recently_vieweds", ["viewed_id", "viewed_type"], name: "index_recently_vieweds_on_viewed_id_and_viewed_type", using: :btree
-  add_index "recently_vieweds", ["viewer_id"], name: "index_recently_vieweds_on_viewer_id", using: :btree
-
   create_table "repositories", force: :cascade do |t|
     t.integer  "project_id",    limit: 4,     default: 0,     null: false
     t.string   "url",           limit: 255,   default: "",    null: false
@@ -738,20 +505,6 @@ ActiveRecord::Schema.define(version: 20151031095005) do
   end
 
   add_index "settings", ["name"], name: "index_settings_on_name", using: :btree
-
-  create_table "taggings", force: :cascade do |t|
-    t.integer  "tag_id",        limit: 4
-    t.integer  "taggable_id",   limit: 4
-    t.string   "taggable_type", limit: 255
-    t.datetime "created_at"
-  end
-
-  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
-  add_index "taggings", ["taggable_id", "taggable_type"], name: "index_taggings_on_taggable_id_and_taggable_type", using: :btree
-
-  create_table "tags", force: :cascade do |t|
-    t.string "name", limit: 255
-  end
 
   create_table "time_entries", force: :cascade do |t|
     t.integer  "project_id",  limit: 4,    null: false

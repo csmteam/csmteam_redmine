@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 gem 'thin', '1.6.1'
-gem 'eventmachine', '1.2.5'
+gem 'eventmachine', '1.0.3'
 gem 'rmagick', '2.15.4'
 
 if Gem::Version.new(Bundler::VERSION) < Gem::Version.new('1.5.0')
@@ -18,7 +18,6 @@ gem "actionpack-action_caching"
 gem "actionpack-xml_parser"
 gem "roadie-rails"
 gem "mimemagic"
-gem 'json', github: 'flori/json', branch: 'v1.8'
 
 # Request at least nokogiri 1.6.7.2 because of security advisories
 gem "nokogiri", ">= 1.6.7.2"
