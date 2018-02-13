@@ -1,1 +1,1 @@
-config.action_controller.relative_url_root = '/redmine'
+# config.action_controller.relative_url_root = '/redmine'
