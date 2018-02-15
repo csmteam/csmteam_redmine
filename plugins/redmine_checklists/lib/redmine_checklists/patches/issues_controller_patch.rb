@@ -24,7 +24,7 @@ module RedmineChecklists
       def self.included(base) # :nodoc:
         base.send(:include, InstanceMethods)
         base.class_eval do
-          unloadable # Send unloadable so it will not be unloaded in development
+          # unloadable # Send # unloadable so it will not be unloaded in development
 
           alias_method_chain :build_new_issue_from_params, :checklist
           before_filter :save_before_state, :only => [:update]

@@ -18,7 +18,7 @@
 # along with redmine_contacts.  If not, see <http://www.gnu.org/licenses/>.
 
 class ContactsIssuesController < ApplicationController
-  unloadable
+  # unloadable
 
   before_filter :find_contact, :only => [:create_issue, :delete]
   before_filter :find_issue, :except => [:create_issue]

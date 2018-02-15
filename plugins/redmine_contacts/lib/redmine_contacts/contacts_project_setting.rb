@@ -18,7 +18,7 @@
 # along with redmine_contacts.  If not, see <http://www.gnu.org/licenses/>.
 
 class ContactsProjectSetting
-  unloadable
+  # unloadable
 
   def initialize(project, plugin_name)
     @project = project

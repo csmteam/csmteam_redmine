@@ -18,7 +18,7 @@
 # along with redmine_contacts.  If not, see <http://www.gnu.org/licenses/>.
 
 class NotesController < ApplicationController
-  unloadable
+  # unloadable
   default_search_scope :notes
   # before_filter :find_model_object
   before_filter :find_note, :only => [:show, :edit, :update, :destroy]

@@ -27,7 +27,7 @@ module RedmineAgile
       def self.included(base)
         base.send(:include, InstanceMethods)
         base.class_eval do
-          unloadable
+          # unloadable
           has_one :agile_data, :dependent => :destroy
           delegate :position, :to => :agile_data, :allow_nil => true
           scope :sorted_by_rank, lambda {eager_load(:agile_data).

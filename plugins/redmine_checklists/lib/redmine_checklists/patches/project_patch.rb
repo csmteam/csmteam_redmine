@@ -25,7 +25,7 @@ module RedmineChecklists
       def self.included(base) # :nodoc:
         base.send(:include, InstanceMethods)
         base.class_eval do
-          unloadable # Send unloadable so it will not be unloaded in development
+          # unloadable # Send # unloadable so it will not be unloaded in development
           alias_method_chain :copy_issues, :checklist
         end
       end

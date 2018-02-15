@@ -18,7 +18,7 @@
 # along with redmine_contacts.  If not, see <http://www.gnu.org/licenses/>.
 
 class ContactsSetting < ActiveRecord::Base
-  unloadable
+  # unloadable
 
   TAX_TYPE_EXCLUSIVE = 1
   TAX_TYPE_INCLUSIVE = 2

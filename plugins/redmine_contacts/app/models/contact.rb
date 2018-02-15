@@ -18,7 +18,7 @@
 # along with redmine_contacts.  If not, see <http://www.gnu.org/licenses/>.
 
 class Contact < ActiveRecord::Base
-  unloadable
+  # unloadable
   include Redmine::SafeAttributes
 
   CONTACT_FORMATS = {

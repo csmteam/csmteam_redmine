@@ -24,7 +24,7 @@ module RedmineContacts
         base.send(:include, InstanceMethods)
 
         base.class_eval do
-          unloadable
+          # unloadable
 
           alias_method_chain :administration_settings_tabs, :contacts
         end

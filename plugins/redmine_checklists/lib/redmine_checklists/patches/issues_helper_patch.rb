@@ -24,7 +24,7 @@ module RedmineChecklists
         base.send(:include, InstanceMethods)
 
         base.class_eval do
-          unloadable
+          # unloadable
 
           alias_method_chain :details_to_strings, :checklists
           alias_method_chain :render_email_issue_attributes, :checklists if Redmine::VERSION.to_s <= '2.4' && Redmine::VERSION.to_s >= '2.2'

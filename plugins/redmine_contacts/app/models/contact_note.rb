@@ -18,7 +18,7 @@
 # along with redmine_contacts.  If not, see <http://www.gnu.org/licenses/>.
 
 class ContactNote < Note
-  unloadable
+  # unloadable
   belongs_to :contact, :foreign_key => :source_id
 
   attr_accessible :subject, :type_id, :content, :source, :author_id if ActiveRecord::VERSION::MAJOR >= 4

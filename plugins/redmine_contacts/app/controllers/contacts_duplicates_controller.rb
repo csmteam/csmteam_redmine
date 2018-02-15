@@ -18,7 +18,7 @@
 # along with redmine_contacts.  If not, see <http://www.gnu.org/licenses/>.
 
 class ContactsDuplicatesController < ApplicationController
-  unloadable
+  # unloadable
   helper :contacts
 
   before_filter :find_project_by_project_id, :authorize, :except => :search

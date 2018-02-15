@@ -25,7 +25,7 @@ module RedmineContacts
         # base.send(:include, InstanceMethods)
 
         base.class_eval do
-          unloadable
+          # unloadable
           # Setting.available_settings["disable_taxes"] = {'default' => 0}
           # @@available_settings["disable_taxes"] = {}
 

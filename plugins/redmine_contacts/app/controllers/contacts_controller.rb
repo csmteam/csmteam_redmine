@@ -18,7 +18,7 @@
 # along with redmine_contacts.  If not, see <http://www.gnu.org/licenses/>.
 
 class ContactsController < ApplicationController
-  unloadable
+  # unloadable
 
   Mime::Type.register "text/x-vcard", :vcf
   Mime::Type.register "application/vnd.ms-excel", :xls

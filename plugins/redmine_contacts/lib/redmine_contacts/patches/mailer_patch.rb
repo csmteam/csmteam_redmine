@@ -77,7 +77,7 @@ module RedmineContacts
         receiver.extend         ClassMethods
         receiver.send :include, InstanceMethods
         receiver.class_eval do
-          unloadable
+          # unloadable
           # TODO: Удалено из-за несовместимости, может быть косяк с шаблонами для майлера
           # self.instance_variable_get("@inheritable_attributes")[:view_paths] << RAILS_ROOT + "/vendor/plugins/redmine_contacts/app/views"
         end

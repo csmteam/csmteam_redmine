@@ -18,7 +18,7 @@
 # along with redmine_checklists.  If not, see <http://www.gnu.org/licenses/>.
 
 class Checklist < ActiveRecord::Base
-  unloadable
+  # unloadable
   include Redmine::SafeAttributes
   belongs_to :issue
   belongs_to :author, :class_name => "User", :foreign_key => "author_id"

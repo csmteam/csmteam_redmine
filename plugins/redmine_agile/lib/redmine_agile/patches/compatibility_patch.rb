@@ -18,7 +18,7 @@
 # along with redmine_agile.  If not, see <http://www.gnu.org/licenses/>.
 
 class AgileQuery < Query
-  unloadable
+  # unloadable
 
   VISIBILITY_PRIVATE = 0
   VISIBILITY_ROLES   = 1

@@ -27,7 +27,7 @@ module RedmineContacts
       def self.included(base) # :nodoc:
         base.send(:include, InstanceMethods)
         base.class_eval do
-          unloadable # Send unloadable so it will not be unloaded in development
+          # unloadable # Send # unloadable so it will not be unloaded in development
           if ActiveRecord::VERSION::MAJOR >= 4
             has_and_belongs_to_many :contacts, lambda{ uniq }
           else

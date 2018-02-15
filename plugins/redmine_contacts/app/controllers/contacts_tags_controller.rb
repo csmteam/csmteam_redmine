@@ -18,7 +18,7 @@
 # along with redmine_contacts.  If not, see <http://www.gnu.org/licenses/>.
 
 class ContactsTagsController < ApplicationController
-  unloadable
+  # unloadable
   before_filter :require_admin, :except => [:index]
   before_filter :find_tag, :only => [:edit, :update]
   before_filter :bulk_find_tags, :only => [:context_menu, :merge, :destroy]

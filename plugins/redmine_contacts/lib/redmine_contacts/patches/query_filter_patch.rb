@@ -25,7 +25,7 @@ module RedmineContacts
       def self.included(base)
         base.send(:include, InstanceMethods)
         base.class_eval do
-          unloadable
+          # unloadable
         end
       end
 

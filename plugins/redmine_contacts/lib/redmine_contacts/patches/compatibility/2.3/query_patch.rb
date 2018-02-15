@@ -24,7 +24,7 @@ module RedmineContacts
       def self.included(base) # :nodoc:
         base.send(:include, InstanceMethods)
         base.class_eval do
-          unloadable
+          # unloadable
           class << self
             VISIBILITY_PRIVATE = 0
             VISIBILITY_ROLES   = 1

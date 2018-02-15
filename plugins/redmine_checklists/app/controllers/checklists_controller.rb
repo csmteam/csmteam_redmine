@@ -18,7 +18,7 @@
 # along with redmine_checklists.  If not, see <http://www.gnu.org/licenses/>.
 
 class ChecklistsController < ApplicationController
-  unloadable
+  # unloadable
 
   before_filter :find_checklist_item, :except => [:index, :create]
   before_filter :find_issue_by_id, :only => [:index, :create]

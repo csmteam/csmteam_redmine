@@ -18,7 +18,7 @@
 # along with redmine_agile.  If not, see <http://www.gnu.org/licenses/>.
 
 class AgileChartsQuery < AgileQuery
-  unloadable
+  # unloadable
 
   validate :validate_query_dates
 

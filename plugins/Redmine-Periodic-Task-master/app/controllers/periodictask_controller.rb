@@ -1,5 +1,5 @@
 class PeriodictaskController < ApplicationController
-  unloadable
+  # unloadable
 
 
   before_filter :find_project

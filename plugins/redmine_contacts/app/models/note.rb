@@ -18,7 +18,7 @@
 # along with redmine_contacts.  If not, see <http://www.gnu.org/licenses/>.
 
 class Note < ActiveRecord::Base
-  unloadable
+  # unloadable
 
   attr_accessible :subject, :type_id, :author_id, :note_time, :content, :created_on, :custom_field_values
 

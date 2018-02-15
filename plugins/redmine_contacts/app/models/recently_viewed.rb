@@ -18,7 +18,7 @@
 # along with redmine_contacts.  If not, see <http://www.gnu.org/licenses/>.
 
 class RecentlyViewed < ActiveRecord::Base
-  unloadable
+  # unloadable
   attr_accessible :viewer
 
   RECENTLY_VIEWED_LIMIT = 5

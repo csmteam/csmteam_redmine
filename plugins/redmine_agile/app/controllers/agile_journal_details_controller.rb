@@ -18,7 +18,7 @@
 # along with redmine_agile.  If not, see <http://www.gnu.org/licenses/>.
 
 class AgileJournalDetailsController < ApplicationController
-  unloadable
+  # unloadable
 
   before_filter :find_issue
 

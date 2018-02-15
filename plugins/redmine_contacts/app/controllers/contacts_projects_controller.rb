@@ -18,7 +18,7 @@
 # along with redmine_contacts.  If not, see <http://www.gnu.org/licenses/>.
 
 class ContactsProjectsController < ApplicationController
-  unloadable
+  # unloadable
 
   before_filter :find_optional_project, :find_contact
   before_filter :find_related_project, :only => [:destroy, :create]

@@ -18,7 +18,7 @@
 # along with redmine_contacts.  If not, see <http://www.gnu.org/licenses/>.
 
 class TasksController < ApplicationController
-  unloadable
+  # unloadable
 
   before_filter :find_project_by_project_id, :authorize, :except => [:index]
   before_filter :find_optional_project, :only => :index

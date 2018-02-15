@@ -18,7 +18,7 @@
 # along with redmine_contacts.  If not, see <http://www.gnu.org/licenses/>.
 
 class ImporterBaseController < ApplicationController
-  unloadable
+  # unloadable
   if Redmine::VERSION.to_s >= '3.2'
     helper :imports
     before_filter :find_import, :only => [:show, :settings, :mapping, :run]

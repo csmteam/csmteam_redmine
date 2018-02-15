@@ -16,6 +16,9 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 Rails.application.routes.draw do
+
+  get 'time_entries_sheet', :to => 'time_entries_sheet#index'
+
   root :to => 'welcome#index', :as => 'home'
 
   match 'login', :to => 'account#login', :as => 'signin', :via => [:get, :post]
@@ -151,7 +154,7 @@ Rails.application.routes.draw do
         end
       end
     end
-  
+
     match 'wiki/index', :controller => 'wiki', :action => 'index', :via => :get
     resources :wiki, :except => [:index, :new, :create], :as => 'wiki_page' do
       member do

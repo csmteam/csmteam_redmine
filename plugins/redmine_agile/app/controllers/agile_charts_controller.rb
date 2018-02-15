@@ -18,7 +18,7 @@
 # along with redmine_agile.  If not, see <http://www.gnu.org/licenses/>.
 
 class AgileChartsController < ApplicationController
-  unloadable
+  # unloadable
 
   menu_item :agile
 
