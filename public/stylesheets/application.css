@@ -1304,6 +1304,7 @@ color: #555; text-shadow: 1px 1px 0 #fff;
   table.list th, table.list td {border: 1px solid #aaa;}
 }
 
+
 /* Accessibility specific styles */
 .hidden-for-sighted {
   position:absolute;
@@ -1312,4 +1313,12 @@ color: #555; text-shadow: 1px 1px 0 #fff;
   width:1px;
   height:1px;
   overflow:hidden;
+}
+
+.time-entry-input {
+  width: 30px !important;
+}
+
+.time-entries-sheet{
+  font-size: 12px;
 }
