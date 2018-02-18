@@ -1,5 +1,7 @@
 %h2 Мое расписание
 
+#week-picker
+
 %table.time-entries-sheet
   %thead
     %th Номер
@@ -26,3 +28,6 @@
         %td= text_field_tag "17-12-18-#{f.id}",nil, class: "time-entry-input"
         %td= text_field_tag "18-12-18-#{f.id}",nil, class: "time-entry-input"
         %td= text_field_tag "19-12-18-#{f.id}",nil, class: "time-entry-input"
+
+
+= javascript_include_tag "time-entries-sheet"
