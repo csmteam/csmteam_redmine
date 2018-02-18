@@ -25,6 +25,7 @@
           %td= text_field_tag "time_entries[#{(@date + 4.day)}|#{f.id}]",@hours["#{(@date + 4.day)}|#{f.id}"], class: "time-entry-input", placeholder: (@date + 4.day).strftime("%d/%m")
           %td= text_field_tag "time_entries[#{(@date + 5.day)}|#{f.id}]",@hours["#{(@date + 5.day)}|#{f.id}"], class: "time-entry-input", placeholder: (@date + 5.day).strftime("%d/%m")
           %td= text_field_tag "time_entries[#{(@date + 6.day)}|#{f.id}]",@hours["#{(@date + 6.day)}|#{f.id}"], class: "time-entry-input", placeholder: (@date + 6.day).strftime("%d/%m")
-      %tr
-        %td
-          = submit_tag "Сохранить"
+
+
+  .save-button{align:'center', style:'max-width:1160px;padding-top:30px;'}
+    = submit_tag "Сохранить", style: "color:black;"
