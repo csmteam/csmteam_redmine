@@ -19,6 +19,7 @@ gem "actionpack-xml_parser"
 gem "roadie-rails"
 gem "mimemagic"
 gem "haml"
+gem "puma"
 
 # Request at least nokogiri 1.6.7.2 because of security advisories
 gem "nokogiri", ">= 1.6.7.2"
@@ -100,6 +101,11 @@ group :development do
   gem "rdoc", ">= 2.4.2"
   gem "yard"
   gem 'pry'
+  gem "capistrano", "~> 3.10", require: false
+  gem 'capistrano-rails'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rbenv'
+  gem 'capistrano3-puma'
 end
 
 group :test do
