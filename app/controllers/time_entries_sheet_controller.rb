@@ -6,7 +6,7 @@ class TimeEntriesSheetController < ApplicationController
 
   def show
     @issues = Issue.where(status_id:2).includes(:project)
-    @date = Date.today.beginning_of_week
+    @date = params[:date].to_date.beginning_of_week
   end
 
 end

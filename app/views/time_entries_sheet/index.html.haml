@@ -1,12 +1,11 @@
-%h2 Мое расписание
+.week-picker-wrapper{align:"center"}
+  #week-picker
 
-#week-picker
-
+%br
 #week-sheet
+  = render partial: 'week_sheet'
 
-.support{style:'display:none1'}
-  =form_tag "/time_entries_sheet/foo", class: "time-entries-form", method: :get, remote: true do
-    = submit_tag "Submit"
-
+.support{style:'display:none'}
+  =form_tag "", id: "time-entries-form", method: :get, remote: true
 
 = javascript_include_tag "time-entries-sheet"
