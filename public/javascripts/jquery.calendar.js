@@ -20,20 +20,21 @@
     var pluginName = "scrollableCalendar",
         $doc = $(document),
         defaults = {
-            startDate: "2012-01-01",
-            endDate: "2022-01-22", // use Jan 21, 2017 for a five year test calendar, Jan 22, 2022 for ten year
-            currentWeek: "latest-week",
+            startDate: "2018-02-05",
+            endDate: "2018-04-01", // use Jan 21, 2017 for a five year test calendar, Jan 22, 2022 for ten year
+            currentWeek: "2018-02-19",
             highlight: true,
             readWeeks: [],
-            dayNames: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
-            monthNames: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            dayNames: ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб","Вс"],
+            monthNames: ["Янв", "Фер", "Мар", "Апр", "Май", "Июнь", "Июль", "Авг", "Сен", "Окт", "Нояб", "Дек"],
             calendarTitle: "",
             touch: false,
             thumbHeight: 45, // Heights are in pixels
             touchRowHeight: 48,
             nonTouchRowHeight: 29,
             onClick: function () { // alert is just for testing
-                window.alert(this); // "this" is the date string for the row that was clicked
+                // window.alert(this); // "this" is the date string for the row that was clicked
+                console.log(this);
             },
             // The final values for rowHeight & rowCount are set programably - any presets or options values are ignored
             rowHeight: 29, // This value is set in validateSettings function (any value passed in is ignored)
@@ -66,9 +67,12 @@
             currentWeekObj = new Date(settings.currentWeek);
 
         // make sure the current date is a Sunday
-        currentWeekObj.setDate(currentWeekObj.getDate() - currentWeekObj.getDay());
+        // currentWeekObj.setDate(currentWeekObj.getDate());
 
         currentRow = Math.floor((currentWeekObj.getTime() - startDateObj.getTime()) / (1000 * 60 * 60 * 24 * 7)) + 1;
+
+        console.log('currentWeekObj',currentWeekObj)
+        console.log('currentRow',currentRow)
 
         if (settings.touchStatus) {
             displayRows = 6;
@@ -120,8 +124,8 @@
                 startDateObj = new Date(startDateObj[0], startDateObj[1] - 1, startDateObj[2]);
                 endDateObj = new Date(endDateObj[0], endDateObj[1] - 1, endDateObj[2]);
 
-                startDateObj.setDate(startDateObj.getDate() - startDateObj.getDay());
-                endDateObj.setDate(endDateObj.getDate() + 6 - endDateObj.getDay());
+                // startDateObj.setDate(startDateObj.getDate());
+                // endDateObj.setDate(endDateObj.getDate() + 6);
                 settings.startDate = startDateObj.toDateString();
                 settings.endDate = endDateObj.toDateString();
 
@@ -131,7 +135,7 @@
                 } else {
                     currentWeekObj = dateStringToArray(settings.currentWeek);
                     currentWeekObj = new Date(currentWeekObj[0], currentWeekObj[1] - 1, currentWeekObj[2]);
-                    currentWeekObj.setDate(currentWeekObj.getDate() - currentWeekObj.getDay()); // Make sure it's a Sunday
+                    // currentWeekObj.setDate(currentWeekObj.getDate() - currentWeekObj.getDay()); // Make sure it's a Sunday
                     settings.currentWeek = currentWeekObj.toDateString();
                 }
 
@@ -492,8 +496,9 @@
             // Function so the calendar does something when clicked
             $table.on("click", function (e) {
                 var row = $(e.target).parent().attr("data-date");
+                this.setWeek(new Date(row))
                 settings.onClick.call(row);
-            });
+            }.bind(this));
         },
 
         setWeek: function (newDate) {
