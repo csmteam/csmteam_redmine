@@ -25,7 +25,11 @@ class TimeEntriesSheetController < ApplicationController
       next unless date
       te = TimeEntry.where(issue_id:issue.id).where(user_id: User.current.id).where(spent_on:date).first_or_initialize(project_id:issue.project_id,activity_id:19)
       te.hours = hours.to_f
-      te.save
+      if hours.to_i == 0
+        te.destroy
+      else
+        te.save
+      end
     end
 
   end
