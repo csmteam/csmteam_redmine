@@ -1,26 +1,30 @@
-%table.time-entries-sheet
-  %thead
-    %th Номер
-    %th Проект
-    %th Тема
-    %th= @date.strftime("%d/%m")
-    %th= (@date + 1.day).strftime("%d/%m")
-    %th= (@date + 2.day).strftime("%d/%m")
-    %th= (@date + 3.day).strftime("%d/%m")
-    %th= (@date + 4.day).strftime("%d/%m")
-    %th= (@date + 5.day).strftime("%d/%m")
-    %th= (@date + 6.day).strftime("%d/%m")
-  %tbody
-  = form_for time_entries_sheet_url do |f|
-    - @issues.each do |f|
+= form_tag time_entries_sheet_url, class: 'time-entries-form', id: SecureRandom.hex, remote: true do
+  %table.time-entries-sheet
+    %thead
+      %th Номер
+      %th Проект
+      %th Тема
+      %th= @date.strftime("%d/%m")
+      %th= (@date + 1.day).strftime("%d/%m")
+      %th= (@date + 2.day).strftime("%d/%m")
+      %th= (@date + 3.day).strftime("%d/%m")
+      %th= (@date + 4.day).strftime("%d/%m")
+      %th= (@date + 5.day).strftime("%d/%m")
+      %th= (@date + 6.day).strftime("%d/%m")
+    %tbody
+      .foo
+      - @issues.each do |f|
+        %tr
+          %td=f.id
+          %td=f.project.name
+          %td=f.subject
+          %td= text_field_tag "time_entries[#{@date.to_s}|#{f.id}]",nil, class: "time-entry-input", placeholder: @date.strftime("%d/%m")
+          %td= text_field_tag "time_entries[#{(@date + 1.day)}|#{f.id}]",nil, class: "time-entry-input", placeholder: (@date + 1.day).strftime("%d/%m")
+          %td= text_field_tag "time_entries[#{(@date + 2.day)}|#{f.id}]",nil, class: "time-entry-input", placeholder: (@date + 2.day).strftime("%d/%m")
+          %td= text_field_tag "time_entries[#{(@date + 3.day)}|#{f.id}]",nil, class: "time-entry-input", placeholder: (@date + 3.day).strftime("%d/%m")
+          %td= text_field_tag "time_entries[#{(@date + 4.day)}|#{f.id}]",nil, class: "time-entry-input", placeholder: (@date + 4.day).strftime("%d/%m")
+          %td= text_field_tag "time_entries[#{(@date + 5.day)}|#{f.id}]",nil, class: "time-entry-input", placeholder: (@date + 5.day).strftime("%d/%m")
+          %td= text_field_tag "time_entries[#{(@date + 6.day)}|#{f.id}]",nil, class: "time-entry-input", placeholder: (@date + 6.day).strftime("%d/%m")
       %tr
-        %td=f.id
-        %td=f.project.name
-        %td=f.subject
-        %td= text_field_tag "13-12-18-#{f.id}",nil, class: "time-entry-input", placeholder: @date.strftime("%d/%m")
-        %td= text_field_tag "15-12-18-#{f.id}",nil, class: "time-entry-input", placeholder: (@date + 1.day).strftime("%d/%m")
-        %td= text_field_tag "16-12-18-#{f.id}",nil, class: "time-entry-input", placeholder: (@date + 2.day).strftime("%d/%m")
-        %td= text_field_tag "17-12-18-#{f.id}",nil, class: "time-entry-input", placeholder: (@date + 3.day).strftime("%d/%m")
-        %td= text_field_tag "14-12-18-#{f.id}",nil, class: "time-entry-input", placeholder: (@date + 4.day).strftime("%d/%m")
-        %td= text_field_tag "18-12-18-#{f.id}",nil, class: "time-entry-input", placeholder: (@date + 5.day).strftime("%d/%m")
-        %td= text_field_tag "19-12-18-#{f.id}",nil, class: "time-entry-input", placeholder: (@date + 6.day).strftime("%d/%m")
+        %td
+          = submit_tag "Сохранить"
