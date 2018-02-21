@@ -41,7 +41,10 @@ function validateForm(){
 
 function submitForm(){
   if(validateForm()){
+    $(".wrong-value-notice").hide()
     $(".time-entries-form").submit()
+  } else {
+    $(".wrong-value-notice").show()
   }
 }
 
