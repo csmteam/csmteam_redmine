@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   get 'time_entries_sheet', :to => 'time_entries_sheet#index'
   post 'time_entries_sheet', :to => 'time_entries_sheet#create'
   get 'time_entries_sheet/:date', :to => 'time_entries_sheet#show'
+  get 'time_entries_confirmation', :to => 'time_entries_sheet#confirmation'
+  get 'time_entries_confirmation/:date', :to => 'time_entries_sheet#confirmation_data'
 
   root :to => 'welcome#index', :as => 'home'
 

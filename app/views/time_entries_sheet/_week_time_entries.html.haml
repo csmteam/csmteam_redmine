@@ -1,0 +1,8 @@
+%table{style:'font-size:12px;'}
+  - @time_entries.each do |f|
+    %tr
+      %td=f.issue.tracker.name
+      %td=f.project.name
+      %td=f.issue.subject
+      %td=f.hours
+      %td=f.hours
