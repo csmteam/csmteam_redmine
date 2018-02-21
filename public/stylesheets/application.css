@@ -1322,3 +1322,7 @@ color: #555; text-shadow: 1px 1px 0 #fff;
 .time-entries-sheet{
   font-size: 12px;
 }
+
+.time-entry-input.red {
+  background: red;
+}
