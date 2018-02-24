@@ -1,0 +1,10 @@
+%h2 Отклонение трудозатрат
+%br
+= form_tag do
+  = hidden_field_tag :ids, @ids.join(',')
+  = label_tag "Комментарий"
+  %br
+  = text_field_tag :comment, nil, style:"width:300px;"
+  %br
+  %br
+  = submit_tag "Сохранить"

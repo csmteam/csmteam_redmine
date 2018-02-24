@@ -52,8 +52,11 @@ class TimeEntriesSheetController < ApplicationController
   end
 
   def reject
-    TimeEntry.where(id:params[:ids].split(',')).update_all(:confirmation_status => 'rejected')
-    redirect_to time_entries_confirmation_url
+    @ids = params[:ids].split(',')
+    if(request.method == "POST")
+      TimeEntry.where(id: @ids).update_all(:confirmation_status => 'rejected', comments: params[:comment])
+      redirect_to time_entries_confirmation_url
+    end
   end
 
 
