@@ -36,14 +36,14 @@ class TimeEntriesSheetController < ApplicationController
 
   def confirmation
     @date = params[:date].try(:to_date) || Date.today
-    @time_entries = TimeEntry.where("spent_on > ? AND spent_on < ?",@date.beginning_of_week,@date.end_of_week)
+    @time_entries = TimeEntry.where(spent_on: @date.beginning_of_week..@date.end_of_week)
   end
 
   def confirmation_data
     return unless params[:date].present?
     @date = params[:date].try(:to_date)
     return unless @date
-    @time_entries = TimeEntry.where("spent_on > ? AND spent_on < ?",@date.beginning_of_week,@date.end_of_week)
+    @time_entries = TimeEntry.where(spent_on: @date.beginning_of_week..@date.end_of_week)
   end
 
   def confirm

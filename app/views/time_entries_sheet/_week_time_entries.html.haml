@@ -9,6 +9,7 @@
         %th= l(:field_project)
         %th= l(:field_subject)
         %th Пользователь
+        %th Дата
         %th Часы
         %th Комментарий
         %th Статус
@@ -24,6 +25,7 @@
             = link_to(f.issue.subject.truncate(60), issue_path(f.issue))
             (#{f.issue.status})
           %td.user= f.user.name
+          %td= f.spent_on.strftime("%d.%m.%Y")
           %td=f.hours
           %td=f.comments
           %td=t "time_entries.confirmation_status.#{f.confirmation_status}"
