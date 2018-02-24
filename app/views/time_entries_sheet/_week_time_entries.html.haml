@@ -7,11 +7,12 @@
         %th= l(:field_tracker)
         %th= l(:field_subject)
         %th Часы
+        %th Статус
     %tbody
       - @time_entries.each do |f|
         %tr{id: "time_entry_id-#{f.id}", class:"hascontextmenu"}
           %td.id
-            = check_box_tag("ids[]", f.issue.id, false, :id => nil)
+            = check_box_tag("ids[]", f.id, false, :id => nil)
             = link_to(f.id, issue_path(f.issue))
           %td.project= f.project.name
           %td.tracker= f.issue.tracker.name
@@ -19,3 +20,4 @@
             = link_to(f.issue.subject.truncate(60), issue_path(f.issue))
             (#{f.issue.status})
           %td=f.hours
+          %td=f.confirmation_status

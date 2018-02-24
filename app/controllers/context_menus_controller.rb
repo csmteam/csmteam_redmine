@@ -98,7 +98,7 @@ class ContextMenusController < ApplicationController
   end
 
   def time_entries_confirmation
-
+    @ids = params[:ids].join(",")
   end
 
 end
