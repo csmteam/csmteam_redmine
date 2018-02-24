@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   get 'time_entries_confirmation', :to => 'time_entries_sheet#confirmation'
   get 'time_entries_confirmation/entries/:date', :to => 'time_entries_sheet#confirmation_data'
   match '/time_entries_confirmation_context_menu', :to => 'context_menus#time_entries_confirmation', :as => 'time_entries_confirmation_context_menu', :via => [:get, :post]
-  post '/time_entries_confirmation/confirm', :to => 'time_entries_sheet#confirm', :as => 'time_entries_confirm'
+  match '/time_entries_confirmation/confirm', :to => 'time_entries_sheet#confirm', :as => 'time_entries_confirm', :via => [:get, :post]
 
   root :to => 'welcome#index', :as => 'home'
 

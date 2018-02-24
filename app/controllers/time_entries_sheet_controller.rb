@@ -46,8 +46,10 @@ class TimeEntriesSheetController < ApplicationController
     @time_entries = TimeEntry.where("spent_on > ? AND spent_on < ?",@date.beginning_of_week,@date.end_of_week)
   end
 
-  def context_menu
-    render plain: "<ul><li>YO!</li></ul>"
+  def confirm
+
+    redirect_to time_entries_confirmation_url
+
   end
 
 
