@@ -40,8 +40,14 @@ class TimeEntriesSheetController < ApplicationController
   end
 
   def confirmation_data
+    return unless params[:date].present?
     @date = params[:date].try(:to_date)
+    return unless @date
     @time_entries = TimeEntry.where("spent_on > ? AND spent_on < ?",@date.beginning_of_week,@date.end_of_week)
+  end
+
+  def context_menu
+    render plain: "<ul><li>YO!</li></ul>"
   end
 
 

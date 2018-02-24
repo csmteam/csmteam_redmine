@@ -21,6 +21,8 @@ class ContextMenusController < ApplicationController
 
   before_filter :find_issues, :only => :issues
 
+  layout false
+
   def issues
     if (@issues.size == 1)
       @issue = @issues.first
@@ -94,4 +96,9 @@ class ContextMenusController < ApplicationController
 
     render :layout => false
   end
+
+  def time_entries_confirmation
+
+  end
+
 end

@@ -1,8 +1,13 @@
-%table{style:'font-size:12px;'}
-  - @time_entries.each do |f|
-    %tr
-      %td=f.issue.tracker.name
-      %td=f.project.name
-      %td=f.issue.subject
-      %td=f.hours
-      %td=f.hours
+= form_tag({}) do
+  %table{style:'font-size:12px;'}
+    - @time_entries.each do |f|
+      %tr{id: "time_entry_id-#{f.id}", class:"hascontextmenu"}
+        %td.id
+          = check_box_tag("ids[]", f.issue.id, false, :id => nil)
+          = link_to(f.id, issue_path(f.issue))
+        %td.tracker= f.issue.tracker.name
+        %td.project= f.project.name
+        %td.subject
+          = link_to(f.issue.subject.truncate(60), issue_path(f.issue))
+          (#{f.issue.status})
+        %td=f.hours

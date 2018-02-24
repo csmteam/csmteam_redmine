@@ -10,3 +10,7 @@
   =form_tag "", id: "time-entries-form", method: :get, remote: true
 
 = javascript_include_tag "time-entries-confirmation"
+
+= javascript_include_tag('context_menu')
+= stylesheet_link_tag('context_menu')
+= context_menu time_entries_confirmation_context_menu_path

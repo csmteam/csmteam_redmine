@@ -1,5 +1,5 @@
 function weekPicked(){
-  $("#time-entries-form").attr("action","/time_entries_confirmation/" + this)
+  $("#time-entries-form").attr("action","/time_entries_confirmation/entries/" + this)
   $("#time-entries-form").submit()
 }
 
