@@ -1319,9 +1319,6 @@ color: #555; text-shadow: 1px 1px 0 #fff;
   width: 35px !important;
 }
 
-.time-entries-sheet{
-  font-size: 12px;
-}
 
 .time-entry-input.red {
   background: red;
