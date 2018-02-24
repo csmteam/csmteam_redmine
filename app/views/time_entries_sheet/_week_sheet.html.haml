@@ -4,13 +4,13 @@
       %th Номер
       %th Проект
       %th Тема
-      %th= @date.strftime("%d/%m")
-      %th= (@date + 1.day).strftime("%d/%m")
-      %th= (@date + 2.day).strftime("%d/%m")
-      %th= (@date + 3.day).strftime("%d/%m")
-      %th= (@date + 4.day).strftime("%d/%m")
-      %th= (@date + 5.day).strftime("%d/%m")
-      %th= (@date + 6.day).strftime("%d/%m")
+      %th= date.strftime("%d/%m")
+      %th= (date + 1.day).strftime("%d/%m")
+      %th= (date + 2.day).strftime("%d/%m")
+      %th= (date + 3.day).strftime("%d/%m")
+      %th= (date + 4.day).strftime("%d/%m")
+      %th= (date + 5.day).strftime("%d/%m")
+      %th= (date + 6.day).strftime("%d/%m")
     %tbody
       .foo
       - @issues.each do |f|
@@ -19,14 +19,13 @@
           %td.project=f.project.name
           %td.subject
             = link_to(f.subject.truncate(60), issue_path(f))
-            (#{f.status})
-          %td= text_field_tag "time_entries[#{@date.to_s}|#{f.id}]",@hours["#{@date.to_s}|#{f.id}"], class: "time-entry-input", placeholder: @date.strftime("%d/%m")
-          %td= text_field_tag "time_entries[#{(@date + 1.day)}|#{f.id}]",@hours["#{(@date + 1.day)}|#{f.id}"], class: "time-entry-input", placeholder: (@date + 1.day).strftime("%d/%m")
-          %td= text_field_tag "time_entries[#{(@date + 2.day)}|#{f.id}]",@hours["#{(@date + 2.day)}|#{f.id}"], class: "time-entry-input", placeholder: (@date + 2.day).strftime("%d/%m")
-          %td= text_field_tag "time_entries[#{(@date + 3.day)}|#{f.id}]",@hours["#{(@date + 3.day)}|#{f.id}"], class: "time-entry-input", placeholder: (@date + 3.day).strftime("%d/%m")
-          %td= text_field_tag "time_entries[#{(@date + 4.day)}|#{f.id}]",@hours["#{(@date + 4.day)}|#{f.id}"], class: "time-entry-input", placeholder: (@date + 4.day).strftime("%d/%m")
-          %td= text_field_tag "time_entries[#{(@date + 5.day)}|#{f.id}]",@hours["#{(@date + 5.day)}|#{f.id}"], class: "time-entry-input", placeholder: (@date + 5.day).strftime("%d/%m")
-          %td= text_field_tag "time_entries[#{(@date + 6.day)}|#{f.id}]",@hours["#{(@date + 6.day)}|#{f.id}"], class: "time-entry-input", placeholder: (@date + 6.day).strftime("%d/%m")
+          %td= text_field_tag "time_entries[#{date.to_s}|#{f.id}]",hours["#{date.to_s}|#{f.id}"], class: "time-entry-input", placeholder: date.strftime("%d/%m")
+          %td= text_field_tag "time_entries[#{(date + 1.day)}|#{f.id}]",hours["#{(date + 1.day)}|#{f.id}"], class: "time-entry-input", placeholder: (date + 1.day).strftime("%d/%m")
+          %td= text_field_tag "time_entries[#{(date + 2.day)}|#{f.id}]",hours["#{(date + 2.day)}|#{f.id}"], class: "time-entry-input", placeholder: (date + 2.day).strftime("%d/%m")
+          %td= text_field_tag "time_entries[#{(date + 3.day)}|#{f.id}]",hours["#{(date + 3.day)}|#{f.id}"], class: "time-entry-input", placeholder: (date + 3.day).strftime("%d/%m")
+          %td= text_field_tag "time_entries[#{(date + 4.day)}|#{f.id}]",hours["#{(date + 4.day)}|#{f.id}"], class: "time-entry-input", placeholder: (date + 4.day).strftime("%d/%m")
+          %td= text_field_tag "time_entries[#{(date + 5.day)}|#{f.id}]",hours["#{(date + 5.day)}|#{f.id}"], class: "time-entry-input", placeholder: (date + 5.day).strftime("%d/%m")
+          %td= text_field_tag "time_entries[#{(date + 6.day)}|#{f.id}]",hours["#{(date + 6.day)}|#{f.id}"], class: "time-entry-input", placeholder: (date + 6.day).strftime("%d/%m")
 
 
   .save-button{align:'center', style:'padding-top:30px;'}

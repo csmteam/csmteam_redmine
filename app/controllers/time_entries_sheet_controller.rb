@@ -4,14 +4,14 @@ class TimeEntriesSheetController < ApplicationController
 
   def index
     @issues = Issue.where(status_id:2).includes(:project)
-    @date = Date.today.beginning_of_week
-    @hours = create_hours_hash @date, User.current
+    @date = Date.today
+    @hours = create_hours_hash @date.beginning_of_week, @date.end_of_week, User.current
   end
 
   def show
     @issues = Issue.where(status_id:2).includes(:project)
-    @date = params[:date].to_date.beginning_of_week
-    @hours = create_hours_hash @date, User.current
+    @date = params[:date].to_date
+    @hours = create_hours_hash @date.beginning_of_week, @date.end_of_week, User.current
   end
 
   def create

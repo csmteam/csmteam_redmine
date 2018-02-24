@@ -55,7 +55,7 @@ $(document).ready(function(){
       touch: false,
       startDate: "2018-01-01",
       endDate: "2018-12-30",
-      currentWeek: "2018-02-19",
+      currentWeek: $("#week-picker").data("current-date"),
       onClick: weekPicked
   });
 

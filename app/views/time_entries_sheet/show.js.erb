@@ -1,2 +1,2 @@
-$("#week-sheet").html("<%= j render(partial: 'week_sheet') %>")
+$("#week-sheet").html("<%= j render(partial: 'week_sheet', locals: { date: @date.beginning_of_week, hours:@hours}) %>")
 formReloaded()
