@@ -2,6 +2,9 @@
   %table.list.issues
     %thead
       %tr
+        %th.checkbox.hide-when-print
+          = check_box_tag 'check_all', '', false, :class => 'toggle-selection', |
+            :title => "#{l(:button_check_all)}/#{l(:button_uncheck_all)}"
         %th #
         %th= l(:field_project)
         %th= l(:field_tracker)
@@ -12,8 +15,9 @@
     %tbody
       - @time_entries.each do |f|
         %tr{id: "time_entry_id-#{f.id}", class:"hascontextmenu"}
-          %td.id
+          %td
             = check_box_tag("ids[]", f.id, false, :id => nil)
+          %td.id
             = link_to(f.id, issue_path(f.issue))
           %td.project= f.project.name
           %td.tracker= f.issue.tracker.name
