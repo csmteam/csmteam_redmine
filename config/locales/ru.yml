@@ -11,6 +11,12 @@
 # была возможность минимальной локализации приложения на русский язык.
 
 ru:
+  time_entries:
+    confirmation_status:
+      pending: "---"
+      confirmed: "Утверждена"
+      rejected: "Отклонена"
+
   direction: ltr
   date:
     formats:

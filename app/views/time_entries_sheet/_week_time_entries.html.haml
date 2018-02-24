@@ -20,4 +20,4 @@
             = link_to(f.issue.subject.truncate(60), issue_path(f.issue))
             (#{f.issue.status})
           %td=f.hours
-          %td=f.confirmation_status
+          %td=t "time_entries.confirmation_status.#{f.confirmation_status}"
