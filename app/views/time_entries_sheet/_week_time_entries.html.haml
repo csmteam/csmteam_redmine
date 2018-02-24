@@ -7,8 +7,8 @@
             :title => "#{l(:button_check_all)}/#{l(:button_uncheck_all)}"
         %th #
         %th= l(:field_project)
-        %th= l(:field_tracker)
         %th= l(:field_subject)
+        %th Пользователь
         %th Часы
         %th Комментарий
         %th Статус
@@ -20,10 +20,10 @@
           %td.id
             = link_to(f.id, issue_path(f.issue))
           %td.project= f.project.name
-          %td.tracker= f.issue.tracker.name
           %td.subject
             = link_to(f.issue.subject.truncate(60), issue_path(f.issue))
             (#{f.issue.status})
+          %td.user= f.user.name
           %td=f.hours
           %td=f.comments
           %td=t "time_entries.confirmation_status.#{f.confirmation_status}"
