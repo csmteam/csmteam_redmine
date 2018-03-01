@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180224140429) do
+ActiveRecord::Schema.define(version: 20180228180418) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "street1",          limit: 255
@@ -754,19 +754,20 @@ ActiveRecord::Schema.define(version: 20180224140429) do
   end
 
   create_table "time_entries", force: :cascade do |t|
-    t.integer  "project_id",          limit: 4,                        null: false
-    t.integer  "user_id",             limit: 4,                        null: false
+    t.integer  "project_id",          limit: 4,                         null: false
+    t.integer  "user_id",             limit: 4,                         null: false
     t.integer  "issue_id",            limit: 4
-    t.float    "hours",               limit: 24,                       null: false
+    t.float    "hours",               limit: 24,                        null: false
     t.string   "comments",            limit: 1024
-    t.integer  "activity_id",         limit: 4,                        null: false
-    t.date     "spent_on",                                             null: false
-    t.integer  "tyear",               limit: 4,                        null: false
-    t.integer  "tmonth",              limit: 4,                        null: false
-    t.integer  "tweek",               limit: 4,                        null: false
-    t.datetime "created_on",                                           null: false
-    t.datetime "updated_on",                                           null: false
+    t.integer  "activity_id",         limit: 4,                         null: false
+    t.date     "spent_on",                                              null: false
+    t.integer  "tyear",               limit: 4,                         null: false
+    t.integer  "tmonth",              limit: 4,                         null: false
+    t.integer  "tweek",               limit: 4,                         null: false
+    t.datetime "created_on",                                            null: false
+    t.datetime "updated_on",                                            null: false
     t.string   "confirmation_status", limit: 255,  default: "pending"
+    t.string   "kind",                limit: 255,  default: "overtime"
   end
 
   add_index "time_entries", ["activity_id"], name: "index_time_entries_on_activity_id", using: :btree

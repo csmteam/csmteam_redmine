@@ -23,7 +23,7 @@ class TimeEntriesSheetController < ApplicationController
       next unless issue
       date = parts[0].to_date
       next unless date
-      te = TimeEntry.where(issue_id:issue.id).where(user_id: User.current.id).where(spent_on:date).first_or_initialize(project_id:issue.project_id,activity_id:19)
+      te = TimeEntry.where(issue_id:issue.id).where(user_id: User.current.id).where(spent_on:date).where(kind: 'common').first_or_initialize(project_id:issue.project_id,activity_id:19,custom_field_values:{"5"=>"", "7"=>"0"})
       te.hours = hours.to_f
       if hours.to_i == 0
         te.destroy
