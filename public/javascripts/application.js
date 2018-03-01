@@ -679,5 +679,6 @@ $(document).ready(hideOnLoad);
 $(document).ready(addFormObserversForDoubleSubmit);
 $(document).ready(defaultFocus);
 $(document).ready(function(){
-  // $("#time_entry_custom_field_values_7").attr("disabled","disabled");
+  $("#time_entry_custom_field_values_7").attr("checked","checked");
+  $("#time_entry_custom_field_values_7").hide();
 })
