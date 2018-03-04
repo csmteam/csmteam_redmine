@@ -1,6 +1,8 @@
 .week-picker-wrapper{align:"center"}
-  #week-picker{:'data-current-date' => @date.beginning_of_week}
-
+  Неделя
+  &nbsp;
+  =form_tag "", id: "time-entries-form", method: :get, remote: true do
+    = select_tag :week, options_for_select(weeks_selector_data(),@date.at_beginning_of_week.strftime('%d-%m-%Y')), id: 'week-select'
 %br
 .wrong-value-notice{style:"display:none;color:red;font-size:14px;max-width:1160px;padding:15px;", align: 'center'}
   Превышен лимит по списанию за сутки. За сутки можно списать не более 24 часов.
@@ -8,6 +10,5 @@
   = render partial: 'week_sheet', locals: {date:@date.beginning_of_week,hours:@hours}
 
 .support{style:'display:none'}
-  =form_tag "", id: "time-entries-form", method: :get, remote: true
 
 = javascript_include_tag "time-entries-sheet"

@@ -1,5 +1,5 @@
 function weekPicked(){
-  $("#time-entries-form").attr("action","/time_entries_sheet/" + this)
+  $("#time-entries-form").attr("action","/time_entries_sheet/" + $('#week-select').val())
   $("#time-entries-form").submit()
 }
 
@@ -8,7 +8,6 @@ window.formReloaded = function(){
 }
 
 function validateForm(){
-  console.log("validateForm")
 
   var isValid = true
 
@@ -18,7 +17,6 @@ function validateForm(){
       $(element).removeClass("red")
       return
     }
-    console.log("value",value)
     var value_float = parseFloat(value)
     if(isNaN(value_float)){
       $(element).addClass("red")
@@ -26,7 +24,6 @@ function validateForm(){
       return
     }
 
-    console.log("float_value",value_float)
     if(value_float > 24.0){
       $(element).addClass("red")
       isValid = false
@@ -51,12 +48,7 @@ function submitForm(){
 $(document).ready(function(){
 
   formReloaded()
-  $("#week-picker").scrollableCalendar({
-      touch: false,
-      startDate: "2018-01-01",
-      endDate: "2018-12-30",
-      currentWeek: $("#week-picker").data("current-date"),
-      onClick: weekPicked
-  });
+  $('#week-select').change(weekPicked)
+
 
 })
