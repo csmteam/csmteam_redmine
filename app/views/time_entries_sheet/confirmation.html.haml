@@ -1,6 +1,8 @@
-.week-picker-wrapper{align:"center", style:"max-width:1160px;"}
-  #week-picker{:'data-current-date' => @date.beginning_of_week}
-
+.week-picker-wrapper{align:"center"}
+  Неделя
+  &nbsp;
+  =form_tag "", id: "time-entries-form", method: :get, remote: true do
+    = select_tag :week, options_for_select(weeks_selector_data(),@date.at_beginning_of_week.strftime('%d-%m-%Y')), id: 'week-select'
 %br
 
 #week-time-entries
