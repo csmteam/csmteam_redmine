@@ -14,7 +14,7 @@
         %th Комментарий
         %th Статус
     %tbody
-      - @time_entries.each do |f|
+      - @time_entries.where.not(:issue_id => nil).each do |f|
         %tr{id: "time_entry_id-#{f.id}", class:"hascontextmenu"}
           %td
             = check_box_tag("ids[]", f.id, false, :id => nil)
