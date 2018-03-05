@@ -19,7 +19,7 @@
           %td
             = check_box_tag("ids[]", f.id, false, :id => nil)
           %td.id
-            = link_to(f.id, issue_path(f.issue))
+            = link_to(f.id, f)
           %td.project= f.project.name
           %td.subject
             = link_to(f.issue.subject.truncate(60), issue_path(f.issue))
