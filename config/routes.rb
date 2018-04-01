@@ -25,6 +25,9 @@ Rails.application.routes.draw do
   match '/time_entries_confirmation_context_menu', :to => 'context_menus#time_entries_confirmation', :as => 'time_entries_confirmation_context_menu', :via => [:get, :post]
   match '/time_entries_confirmation/confirm', :to => 'time_entries_sheet#confirm', :as => 'time_entries_confirm', :via => [:get, :post]
   match '/time_entries_confirmation/reject', :to => 'time_entries_sheet#reject', :as => 'time_entries_reject', :via => [:get, :post]
+  post '/week_shedule_agreements/confirm', :to => 'week_shedule_agreements#create'
+  post '/week_shedule_agreements/reject', :to => 'week_shedule_agreements#destroy'
+
 
   root :to => 'welcome#index', :as => 'home'
 

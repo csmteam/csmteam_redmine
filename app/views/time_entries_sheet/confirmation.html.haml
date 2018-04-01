@@ -1,18 +1,45 @@
 .week-picker-wrapper{align:"center"}
-  Неделя
-  &nbsp;
-  =form_tag "", id: "time-entries-form", method: :get, remote: true do
-    = select_tag :week, options_for_select(weeks_selector_data(),@date.at_beginning_of_week.strftime('%d-%m-%Y')), id: 'week-select'
+  = form_tag "", id: "time-entries-form", method: :get, remote: true do
+    .part
+      Неделя
+      &nbsp;
+      = select_tag :week, options_for_select(weeks_selector_data(),@date.at_beginning_of_week.strftime('%d-%m-%Y')), id: 'week-select'
+    .part
+    .part
+      Пользователь
+      &nbsp;
+      = select_tag :user_id, options_for_select(User.all.map{|a| [a.name,a.id]},params[:user_id]), id: 'user-select'
+    .part
+  .part
+    Статус:
+    &nbsp;
+    %span#wsa-status-title
+
+    &nbsp;
+    = link_to "Отменить", "#", id: 'week-shedule-action-button'
+
 %br
 
 #week-time-entries
-  = render partial: 'week_time_entries'
+  -# = render partial: 'week_time_entries'
 
 .support{style:'display:none'}
-  =form_tag "", id: "time-entries-form", method: :get, remote: true
+  = form_tag "", id: "time-entries-form", method: :get, remote: true do
+    |
+
+  = form_tag "", id: "week-shedule-agreement-form", remote: true do
+    = hidden_field_tag :user_id, params[:user_id], id: 'week-shedule-agreement-user-id'
+    = hidden_field_tag :date, params[:date], id: 'week-shedule-agreement-date'
+
 
 = javascript_include_tag "time-entries-confirmation"
 
 = javascript_include_tag('context_menu')
 = stylesheet_link_tag('context_menu')
 = context_menu time_entries_confirmation_context_menu_path
+
+:css
+  .part {
+    display:inline-block;
+    min-width:20px;
+  }

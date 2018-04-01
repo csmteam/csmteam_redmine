@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180228180418) do
+ActiveRecord::Schema.define(version: 20180401120912) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "street1",          limit: 255
@@ -853,6 +853,13 @@ ActiveRecord::Schema.define(version: 20180228180418) do
   add_index "watchers", ["user_id", "watchable_type"], name: "watchers_user_id_type", using: :btree
   add_index "watchers", ["user_id"], name: "index_watchers_on_user_id", using: :btree
   add_index "watchers", ["watchable_id", "watchable_type"], name: "index_watchers_on_watchable_id_and_watchable_type", using: :btree
+
+  create_table "week_shedule_agreements", force: :cascade do |t|
+    t.date     "week_begin_at"
+    t.integer  "user_id",       limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
 
   create_table "wiki_content_versions", force: :cascade do |t|
     t.integer  "wiki_content_id", limit: 4,                       null: false

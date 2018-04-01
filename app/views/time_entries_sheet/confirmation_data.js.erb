@@ -1,2 +1,4 @@
 $("#week-time-entries").html("<%= j render(partial: 'week_time_entries') %>")
-formReloaded()
+$('#week-shedule-agreement-user-id').val("<%= @user.id %>")
+$('#week-shedule-agreement-date').val("<%= @date.to_s %>")
+formReloaded("<%= @wsa.try(:id) || 0 %>")

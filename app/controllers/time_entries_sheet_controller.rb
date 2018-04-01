@@ -27,7 +27,7 @@ class TimeEntriesSheetController < ApplicationController
       te.activity = te.project.activities.first
       te.hours = hours.to_f
       te.save
-      
+
       @issues = Issue.where(status_id:2).includes(:project)
       @date = params[:date].to_date
       @hours = create_hours_hash @date.beginning_of_week, @date.end_of_week, User.current
@@ -42,10 +42,12 @@ class TimeEntriesSheetController < ApplicationController
   end
 
   def confirmation_data
-    return unless params[:date].present?
+    return if !params[:date].present? || !params[:user_id].present?
     @date = params[:date].try(:to_date)
-    return unless @date
-    @time_entries = TimeEntry.where(spent_on: @date.beginning_of_week..@date.end_of_week)
+    @user = User.find_by_id(params[:user_id])
+    return if !@date || !@user
+    @time_entries = TimeEntry.where(user_id: @user.id).where(spent_on: @date.beginning_of_week..@date.end_of_week)
+    @wsa = WeekSheduleAgreement.where(user_id: @user.id).where(week_begin_at: @date).first
   end
 
   def confirm
