@@ -16,12 +16,11 @@
     %span#wsa-status-title
 
     &nbsp;
-    = link_to "Отменить", "#", id: 'week-shedule-action-button'
+    = link_to "", "#", id: 'week-shedule-action-button'
 
 %br
 
 #week-time-entries
-  -# = render partial: 'week_time_entries'
 
 .support{style:'display:none'}
   = form_tag "", id: "time-entries-form", method: :get, remote: true do
