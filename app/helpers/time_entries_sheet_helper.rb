@@ -22,4 +22,13 @@ module TimeEntriesSheetHelper
     time_entries
   end
 
+  def fetch_wsa date, user
+    from = date.beginning_of_week
+    to = date.end_of_week
+    unless TimeEntry.where(user_id: user.id).where(spent_on: from..to).where.not(confirmation_status: 'confirmed').present? 
+      @wsa = WeekSheduleAgreement.where(user_id: user.id).where(week_begin_at: from).first_or_create
+    end
+    @wsa
+  end
+
 end

@@ -52,7 +52,9 @@ class TimeEntriesSheetController < ApplicationController
 
   def confirm
     @ids = params[:ids].split(',')
-    TimeEntry.where(id:@ids).update_all(:confirmation_status => 'confirmed')
+    time_entries = TimeEntry.where(id:@ids)
+    time_entries.update_all(:confirmation_status => 'confirmed')
+    @wsa = fetch_wsa time_entries.first.spent_on, User.current
   end
 
   def reject
