@@ -1,0 +1,7 @@
+- current_date = date + index.day
+- if (hours["#{current_date}|#{issue.id}"] || 0)  > 0
+  -# - current_date_str = current_date.strftime("")
+  = link_to hours["#{current_date}|#{issue.id}"], issue_time_entries_url(issue, f: ["spent_on",""], op: {spent_on:"><"}, v: {spent_on: [current_date,current_date]})
+  -# "f"=>["spent_on", ""], "op"=>{"spent_on"=>"><"}, "v"=>{"spent_on"=>["2018-03-27", "2018-03-27"]}
+- else
+  = text_field_tag "time_entries[#{current_date}|#{issue.id}]",hours["#{current_date}|#{issue.id}"], class: "time-entry-input", placeholder: current_date.strftime("%d/%m")
