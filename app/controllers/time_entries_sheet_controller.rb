@@ -51,8 +51,8 @@ class TimeEntriesSheetController < ApplicationController
   end
 
   def confirm
-    TimeEntry.where(id:params[:ids].split(',')).update_all(:confirmation_status => 'confirmed')
-    redirect_to time_entries_confirmation_url
+    @ids = params[:ids].split(',')
+    TimeEntry.where(id:@ids).update_all(:confirmation_status => 'confirmed')
   end
 
   def reject

@@ -28,4 +28,4 @@
           %td= f.spent_on.strftime("%d.%m.%Y")
           %td=f.hours
           %td=f.comments
-          %td=t "time_entries.confirmation_status.#{f.confirmation_status}"
+          %td{id: "te#{f.id}-status"}=t "time_entries.confirmation_status.#{f.confirmation_status}"

@@ -1,3 +1,3 @@
 %ul
-  %li= context_menu_link "Утвердить", {:controller => 'time_entries_sheet', :action => 'confirm', :ids => @ids}, method: :post
+  %li= context_menu_link "Утвердить", {:controller => 'time_entries_sheet', :action => 'confirm', :ids => @ids}, method: :post, remote: true
   %li= context_menu_link "Отклонить", {:controller => 'time_entries_sheet', :action => 'reject', :ids => @ids}
