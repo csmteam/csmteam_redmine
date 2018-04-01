@@ -23,16 +23,17 @@ class TimeEntriesSheetController < ApplicationController
       next unless issue
       date = parts[0].to_date
       next unless date
-      te = TimeEntry.new(issue_id:issue.id, user_id: User.current.id, spent_on:date, kind: 'common', project_id:issue.project_id,custom_field_values:{"5"=>"", "7"=>"0"})
+      te = TimeEntry.new(issue_id:issue.id, spent_on:date, kind: 'common', project_id:issue.project_id,custom_field_values:{"5"=>"", "7"=>"0"})
       te.activity = te.project.activities.first
       te.hours = hours.to_f
+      te.user = User.current
       te.save
-
-      @issues = Issue.where(status_id:2).includes(:project)
-      @date = params[:date].to_date
-      @hours = create_hours_hash @date.beginning_of_week, @date.end_of_week, User.current
-      render :show
     end
+
+    @issues = Issue.where(status_id:2).includes(:project)
+    @date = params[:date].to_date
+    @hours = create_hours_hash @date.beginning_of_week, @date.end_of_week, User.current
+    render :show
 
   end
 
