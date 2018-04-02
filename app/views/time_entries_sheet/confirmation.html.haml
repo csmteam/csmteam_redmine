@@ -14,9 +14,9 @@
     Статус:
     &nbsp;
     %span#wsa-status-title
-
-    &nbsp;
-    = link_to "", "#", id: 'week-shedule-action-button'
+    - if User.current.admin
+      &nbsp;
+      = link_to "", "#", id: 'week-shedule-action-button'
 
 %br
 
